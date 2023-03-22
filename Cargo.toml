@@ -1,15 +1,22 @@
 [package]
-name = "fuzzer"
+name = "namada-fuzzer"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-getrandom = { version = "0.2", features = ["js"] }
+getrandom = { version = "0.2" }
 async-trait = "0.1.51"
+borsh = "0.9.0"
 namada = { git = "https://github.com/anoma/namada", branch = "mariari/shared-sdk-integration", default-features = false, features = ["abciplus", "namada-sdk"] }
-tendermint-rpc = {version = "0.23.6", features = ["trait-client"], default-features = false}
+tendermint-config = {version = "0.23.6"}
+tendermint-rpc = {version = "0.23.6", features = ["http-client"], default-features = false}
+tokio = {version = "1.26.0", features = ["rt-multi-thread"]}
+masp_primitives = { git = "https://github.com/anoma/masp", rev = "bee40fc465f6afbd10558d12fe96eb1742eee45c", features = ["transparent-inputs"] }
+masp_proofs = { git = "https://github.com/anoma/masp", rev = "bee40fc465f6afbd10558d12fe96eb1742eee45c", features = ["bundled-prover", "download-params"]}
+rand = {version = "0.8", default-features = false}
+rand_core = {version = "0.6", default-features = false}
 
 [patch.crates-io]
 # TODO temp patch for <https://github.com/near/borsh-rs/issues/82>, <https://github.com/near/borsh-rs/issues/84> and more tba.
